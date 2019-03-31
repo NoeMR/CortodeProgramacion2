@@ -16,6 +16,9 @@ public class Ventana extends javax.swing.JFrame {
      */
     public Ventana() {
         initComponents();
+        setLocationRelativeTo(null);
+        txtNombre.requestFocus();
+        transparentes();
     }
 
     /**
@@ -36,46 +39,77 @@ public class Ventana extends javax.swing.JFrame {
         rbtnBuscar = new javax.swing.JRadioButton();
         rbtnEditar = new javax.swing.JRadioButton();
         rbtnEliminar = new javax.swing.JRadioButton();
-        btnAccion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstEstudiantes = new javax.swing.JList<>();
         lblResultado = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
+        btnAccion = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblNombre.setText("Nombre:");
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Apellido");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 230, -1));
-        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 230, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
+
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 290, 30));
+
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 290, 30));
 
         bGroup.add(rbtnAgregar);
+        rbtnAgregar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnAgregar.setText("Agregar");
-        getContentPane().add(rbtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+        rbtnAgregar.setBorder(null);
+        rbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnAgregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbtnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, 30));
 
         bGroup.add(rbtnBuscar);
+        rbtnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnBuscar.setText("Buscar");
-        getContentPane().add(rbtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
+        rbtnBuscar.setBorder(null);
+        getContentPane().add(rbtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, 30));
 
         bGroup.add(rbtnEditar);
+        rbtnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnEditar.setText("Editar");
-        getContentPane().add(rbtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
+        rbtnEditar.setBorder(null);
+        getContentPane().add(rbtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, 30));
 
         bGroup.add(rbtnEliminar);
+        rbtnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnEliminar.setText("Eliminar");
-        getContentPane().add(rbtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
-
-        btnAccion.setText("Acción");
-        getContentPane().add(btnAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
+        rbtnEliminar.setBorder(null);
+        getContentPane().add(rbtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, 30));
 
         jScrollPane1.setViewportView(lstEstudiantes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 400, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 480, 190));
         getContentPane().add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 180, 20));
+
+        btnCerrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, -1, -1));
+
+        btnAccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAccion.setText("Acción");
+        getContentPane().add(btnAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo2.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -83,6 +117,22 @@ public class Ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnAgregarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    
+    public void transparentes(){
+        this.rbtnAgregar.setOpaque(false);
+        this.rbtnBuscar.setOpaque(false);
+        this.rbtnEditar.setOpaque(false);
+        this.rbtnEliminar.setOpaque(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -121,6 +171,7 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGroup;
     private javax.swing.JButton btnAccion;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
