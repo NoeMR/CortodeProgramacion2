@@ -24,7 +24,7 @@ public class Estudiante {
     public Estudiante(String nombre, String apellido, int numero) {
         setNombre(nombre);
         setApellido(apellido);
-        setCarnet(getApellido(), getNombre(), numero);
+        setCarnet(numero);
     }
 
     public String getNombre() {
@@ -55,17 +55,17 @@ public class Estudiante {
         return Carnet;
     }
 
-    public void setCarnet(String apellido, String nombre, int numero) {
+    public void setCarnet(int numero) {
         if (numero > 999) {
             JOptionPane.showMessageDialog(null, "limite de carnet");
         } else {
-            //el carnet se genera con las inicial de apellido, seguida de la inicial del nombre, seguido por un numero correlativo segun cada combinacion de iniciales
+           //el carnet se genera con las inicial de apellido, seguida de la inicial del nombre, seguido por un numero correlativo segun cada combinacion de iniciales
             if (numero < 10) {
-                this.Carnet = String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0)) + "00" + numero;
+                this.Carnet = String.valueOf(getApellido().charAt(0)) + String.valueOf(getNombre().charAt(0)) + "00" + numero;
             } else if (numero < 100) {
-                this.Carnet = String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0)) + "0" + numero;
+                this.Carnet = String.valueOf(getApellido().charAt(0)) + String.valueOf(getNombre().charAt(0)) + "0" + numero;
             } else {
-                this.Carnet = String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0)) + numero;
+                this.Carnet = String.valueOf(getApellido().charAt(0)) + String.valueOf(getNombre().charAt(0)) + numero;
             }
         }
     }

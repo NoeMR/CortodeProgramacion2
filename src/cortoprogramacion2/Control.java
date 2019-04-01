@@ -45,11 +45,11 @@ public class Control {
                 // si el parametro enviado esta vacio no se modifica 
                 if (!nombre.equals("")) {
                     estudiantes.get(indice).setNombre(nombre);
-                    estudiantes.get(indice).setCarnet(estudiantes.get(indice).getApellido(), nombre, verificarNumero(nombre, estudiantes.get(indice).getApellido()));
+                    estudiantes.get(indice).setCarnet(verificarNumero(nombre, estudiantes.get(indice).getApellido()));
                 }
                 if (!apellido.equals("")) {
                     estudiantes.get(indice).setApellido(apellido);
-                    estudiantes.get(indice).setCarnet(apellido, estudiantes.get(indice).getNombre(), verificarNumero(estudiantes.get(indice).getNombre(), apellido));
+                    estudiantes.get(indice).setCarnet(verificarNumero(estudiantes.get(indice).getNombre(), apellido));
                 }
 
                 editado = true;
