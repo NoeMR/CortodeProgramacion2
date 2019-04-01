@@ -22,9 +22,9 @@ public class Estudiante {
     }
 
     public Estudiante(String nombre, String apellido, int numero) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        setCarnet(apellido, nombre, numero);
+        setNombre(nombre);
+        setApellido(apellido);
+        setCarnet(getApellido(), getNombre(), numero);
     }
 
     public String getNombre() {
@@ -32,7 +32,7 @@ public class Estudiante {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = estruturarTexto(nombre);
     }
 
     public String getApellido() {
@@ -40,7 +40,7 @@ public class Estudiante {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = estruturarTexto(apellido);
     }
 
     public String getGrado() {
@@ -68,5 +68,21 @@ public class Estudiante {
                 this.Carnet = String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0)) + numero;
             }
         }
+    }
+    
+    //Metodo que convierte a mayuscula la inial el texto y en minusculas las demas letras que se obtiene del parametro que se le pasa
+    public String estruturarTexto(String campo) {
+        char[] texto = new char[campo.length()];
+        String newTexto = "";
+        for (int i = 0; i < texto.length; i++) {
+            if (i == 0) {
+                texto[i] = Character.toUpperCase(campo.charAt(i));
+            } else {
+                texto[i] = Character.toLowerCase(campo.charAt(i));
+            }
+            newTexto = newTexto + texto[i];
+        }
+        campo = newTexto;
+        return campo;
     }
 }

@@ -21,8 +21,6 @@ public class Control {
     }
 
     public void agregar(String nombre, String apellido) {
-        // se verifica si ya existen carnet con las mismas iniciales (apellido - nombre) segun cuanto existan se enviara un numero que no contenga ningun carnet existente como parametro al nuevo estudiante
-
         // se le añade al arraylist un nuevo objeto del tipo estudiante pasando los parametros requeridos
         estudiantes.add(new Estudiante(nombre, apellido, verificarNumero(nombre, apellido)));
     }
@@ -138,5 +136,5 @@ public class Control {
             }
         }
     }
-    
+
 }
