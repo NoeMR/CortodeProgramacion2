@@ -100,4 +100,43 @@ public class Control {
         return numero;
     }
     
+    // metodo para ordenar el arraylist estudiantes de A - Z empezando por Apellido
+    public void ordenarArray() {
+        String[] arrayTemporal = new String[estudiantes.size()];
+        Estudiante temp;
+        int menor;
+        boolean ordenado;
+        int k;
+        String numeroCarnet;
+        for (int i = 0; i < estudiantes.size(); i++) {
+            arrayTemporal[i] = informacion(i);
+        }
+        for (int i = 0; i < arrayTemporal.length; i++) {
+            for (int j = 0; j < arrayTemporal.length - 1; j++) {
+                if (arrayTemporal[j].length() < arrayTemporal[j + 1].length()) {
+                    menor = arrayTemporal[j].length();
+                } else {
+                    menor = arrayTemporal[j + 1].length();
+                }
+                k = 0;
+                ordenado = false;
+                // se compara los caracteres necesarios para ordenar, si los caracteres en la misma posicion son iguales, se sigue iterando hasta llegar al ultimo caracter
+                while (k < menor && ordenado == false) {
+                    if (arrayTemporal[j].charAt(k) > arrayTemporal[j + 1].charAt(k)) {
+                        numeroCarnet = estudiantes.get(j).getCarnet();
+                        temp = new Estudiante(estudiantes.get(j).getNombre(), estudiantes.get(j).getApellido(), Integer.parseInt(String.valueOf(numeroCarnet.charAt(2)) + String.valueOf(numeroCarnet.charAt(3)) + String.valueOf(numeroCarnet.charAt(4))));
+                        estudiantes.set(j, estudiantes.get(j+1));
+                        arrayTemporal[j] = arrayTemporal[j + 1];
+                        estudiantes.set(j+1, temp);
+                        ordenado = true;
+                    } else if (arrayTemporal[j].charAt(k) == arrayTemporal[j + 1].charAt(k)) {
+                        k++;
+                    } else {
+                        ordenado = true;
+                    }
+                }
+            }
+        }
+    }
+    
 }
