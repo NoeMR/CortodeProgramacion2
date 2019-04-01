@@ -46,6 +46,8 @@ public class Ventana extends javax.swing.JFrame {
         btnAccion = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtCarnet = new javax.swing.JTextField();
+        txtGrado = new javax.swing.JTextField();
+        lblGrado = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,17 +56,17 @@ public class Ventana extends javax.swing.JFrame {
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblNombre.setText("Nombre:");
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Apellido:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 290, 30));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 290, 30));
 
         txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 290, 30));
+        getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 290, 30));
 
         bGroup.add(rbtnAgregar);
         rbtnAgregar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -115,10 +117,17 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Cernet:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(txtCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 290, 30));
+        getContentPane().add(txtCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 290, 30));
+
+        txtGrado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txtGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 290, 30));
+
+        lblGrado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblGrado.setText("Grado:");
+        getContentPane().add(lblGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo2.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -185,6 +194,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblGrado;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JList<String> lstEstudiantes;
@@ -194,6 +204,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnEliminar;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarnet;
+    private javax.swing.JTextField txtGrado;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
