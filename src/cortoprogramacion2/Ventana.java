@@ -306,8 +306,10 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
     private void txtCarnetKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCarnetKeyTyped
-        if (!(Character.isLetterOrDigit(evt.getKeyChar()))) {
+       if (!(Character.isLetterOrDigit(evt.getKeyChar()))) {
             evt.consume();
+        } else if(Character.isLowerCase(evt.getKeyChar())){
+            evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
         }
     }//GEN-LAST:event_txtCarnetKeyTyped
 
