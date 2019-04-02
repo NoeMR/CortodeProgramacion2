@@ -13,23 +13,23 @@ import javax.swing.JOptionPane;
  * @author Ferna
  */
 public class Control {
-    
+
     private ArrayList<Estudiante> estudiantes;
 
     public Control() {
         estudiantes = new ArrayList<Estudiante>();
     }
 
-    public void agregar(String nombre, String apellido) {
+    public void agregar(String nombre, String apellido, String grado) {
         // se le añade al arraylist un nuevo objeto del tipo estudiante pasando los parametros requeridos
-        estudiantes.add(new Estudiante(nombre, apellido, verificarNumero(nombre, apellido)));
+        estudiantes.add(new Estudiante(nombre, apellido, verificarNumero(nombre, apellido), grado));
     }
 
     public String buscar(String carnet) {
         String estudiante = "No existe ese estudiante";
         for (int i = 0; i < estudiantes.size(); i++) {
             if (estudiantes.get(i).getCarnet().equals(carnet)) {
-                estudiante = estudiantes.get(i).getApellido() + " " + estudiantes.get(i).getNombre() + " " + estudiantes.get(i).getCarnet();
+                estudiante = informacion(i);
                 break;
             }
         }
@@ -37,11 +37,12 @@ public class Control {
     }
 
     // metodo que realiza el proceso de editar el registro en el arrayList y retorna su posicion que servira para editar el elemnto en la lista del formulario
-    public int editar(String nombre, String apellido, String carnet) {
+    public int editar(String nombre, String apellido, String grado, String carnet) {
         boolean editado = false;
         int indice;
         for (indice = 0; indice < estudiantes.size(); indice++) {
             if (estudiantes.get(indice).getCarnet().equals(carnet)) {
+
                 // si el parametro enviado esta vacio no se modifica 
                 if (!nombre.equals("")) {
                     estudiantes.get(indice).setNombre(nombre);
@@ -50,6 +51,9 @@ public class Control {
                 if (!apellido.equals("")) {
                     estudiantes.get(indice).setApellido(apellido);
                     estudiantes.get(indice).setCarnet(verificarNumero(estudiantes.get(indice).getNombre(), apellido));
+                }
+                if (!grado.equals("")) {
+                    estudiantes.get(indice).setGrado(grado);
                 }
 
                 editado = true;
@@ -85,9 +89,10 @@ public class Control {
 
     // metodo que retorna la informacion del estudiante especificado
     public String informacion(int posicion) {
-        return estudiantes.get(posicion).getApellido() + " " + estudiantes.get(posicion).getNombre() + " " + estudiantes.get(posicion).getCarnet();
+        return estudiantes.get(posicion).getApellido() + " " + estudiantes.get(posicion).getNombre() + " - " + estudiantes.get(posicion).getCarnet() + " - " + estudiantes.get(posicion).getGrado();
     }
 
+    // se verifica si ya existen carnet con las mismas iniciales (apellido - nombre) segun cuanto existan se enviara un numero que no contenga ningun carnet existente como parametro al nuevo estudiante
     public int verificarNumero(String nombre, String apellido) {
         int numero = 1;
         for (int i = 0; i < estudiantes.size(); i++) {
@@ -97,7 +102,7 @@ public class Control {
         }
         return numero;
     }
-    
+
     // metodo para ordenar el arraylist estudiantes de A - Z empezando por Apellido
     public void ordenarArray() {
         String[] arrayTemporal = new String[estudiantes.size()];
@@ -122,10 +127,10 @@ public class Control {
                 while (k < menor && ordenado == false) {
                     if (arrayTemporal[j].charAt(k) > arrayTemporal[j + 1].charAt(k)) {
                         numeroCarnet = estudiantes.get(j).getCarnet();
-                        temp = new Estudiante(estudiantes.get(j).getNombre(), estudiantes.get(j).getApellido(), Integer.parseInt(String.valueOf(numeroCarnet.charAt(2)) + String.valueOf(numeroCarnet.charAt(3)) + String.valueOf(numeroCarnet.charAt(4))));
-                        estudiantes.set(j, estudiantes.get(j+1));
+                        temp = new Estudiante(estudiantes.get(j).getNombre(), estudiantes.get(j).getApellido(), Integer.parseInt(String.valueOf(numeroCarnet.charAt(2)) + String.valueOf(numeroCarnet.charAt(3)) + String.valueOf(numeroCarnet.charAt(4))), estudiantes.get(i).getGrado());
+                        estudiantes.set(j, estudiantes.get(j + 1));
                         arrayTemporal[j] = arrayTemporal[j + 1];
-                        estudiantes.set(j+1, temp);
+                        estudiantes.set(j + 1, temp);
                         ordenado = true;
                     } else if (arrayTemporal[j].charAt(k) == arrayTemporal[j + 1].charAt(k)) {
                         k++;

@@ -21,10 +21,11 @@ public class Estudiante {
     public Estudiante() {
     }
 
-    public Estudiante(String nombre, String apellido, int numero) {
+    public Estudiante(String nombre, String apellido, int numero, String grado) {
         setNombre(nombre);
         setApellido(apellido);
         setCarnet(numero);
+        setGrado(grado);
     }
 
     public String getNombre() {
@@ -48,7 +49,7 @@ public class Estudiante {
     }
 
     public void setGrado(String grado) {
-        this.grado = grado;
+        this.grado = estruturarTexto(grado);
     }
 
     public String getCarnet() {
@@ -59,7 +60,7 @@ public class Estudiante {
         if (numero > 999) {
             JOptionPane.showMessageDialog(null, "limite de carnet");
         } else {
-           //el carnet se genera con las inicial de apellido, seguida de la inicial del nombre, seguido por un numero correlativo segun cada combinacion de iniciales
+            //el carnet se genera con las inicial de apellido, seguida de la inicial del nombre, seguido por un numero correlativo segun cada combinacion de iniciales
             if (numero < 10) {
                 this.Carnet = String.valueOf(getApellido().charAt(0)) + String.valueOf(getNombre().charAt(0)) + "00" + numero;
             } else if (numero < 100) {
@@ -69,7 +70,7 @@ public class Estudiante {
             }
         }
     }
-    
+
     //Metodo que convierte a mayuscula la inial el texto y en minusculas las demas letras que se obtiene del parametro que se le pasa
     public String estruturarTexto(String campo) {
         char[] texto = new char[campo.length()];
