@@ -49,7 +49,7 @@ public class Estudiante {
     }
 
     public void setGrado(String grado) {
-        this.grado = estruturarTexto(grado);
+        this.grado = grado;
     }
 
     public String getCarnet() {
