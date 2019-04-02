@@ -69,8 +69,8 @@ public class Ventana extends javax.swing.JFrame {
         btnAccion = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtCarnet = new javax.swing.JTextField();
-        txtGrado = new javax.swing.JTextField();
         lblGrado = new javax.swing.JLabel();
+        cmbGrado = new javax.swing.JComboBox<>();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,7 +148,10 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstEstudiantes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 480, 190));
-        getContentPane().add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 180, 20));
+
+        lblResultado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblResultado.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 480, 20));
 
         btnCerrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCerrar.setText("Cerrar");
@@ -169,7 +172,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(btnAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Cernet:");
+        jLabel2.setText("Carnet:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -180,17 +183,12 @@ public class Ventana extends javax.swing.JFrame {
         });
         getContentPane().add(txtCarnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 290, 30));
 
-        txtGrado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtGrado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtGradoKeyTyped(evt);
-            }
-        });
-        getContentPane().add(txtGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 290, 30));
-
         lblGrado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblGrado.setText("Grado:");
         getContentPane().add(lblGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
+
+        cmbGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primero ", "Segundo ", "Tercero ", "Cuarto", "Quinto", "Sexto", "Septimo", "Octavo ", "Noveno" }));
+        getContentPane().add(cmbGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 120, 30));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo2.png"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -211,17 +209,16 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccionActionPerformed
         if (rbtnAgregar.isSelected() == true) {
-            if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtGrado.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Error: asegurese de ingresar el nombre, apellido y grado del estudiante a agregar");
+            if (txtNombre.getText().equals("") || txtApellido.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Error: asegurese de ingresar el nombre y apellido del estudiante a agragar");
             } else {
-                controlE.agregar(txtNombre.getText(), txtApellido.getText(), txtGrado.getText());
+                controlE.agregar(txtNombre.getText(), txtApellido.getText(), cmbGrado.getSelectedItem().toString());
                 // se le pasa numeroEstudiante como parametro al metodo informacion que indica el indice o posicion del arrayList y se agrega ese elemento a la lista
                 modeloLista.addElement(controlE.informacion(numeroEstudiante));
                 ordenarLista();
                 numeroEstudiante++;
                 txtApellido.setText("");
                 txtNombre.setText("");
-                txtGrado.setText("");
             }
             txtNombre.requestFocus();
         } else if (rbtnEliminar.isSelected() == true) {
@@ -241,16 +238,15 @@ public class Ventana extends javax.swing.JFrame {
             txtCarnet.setText("");
             txtCarnet.requestFocus();
         } else if (rbtnEditar.isSelected() == true) {
-            if (txtNombre.getText().equals("") && txtApellido.getText().equals("") && txtGrado.getText().equals("")) {
+            if (txtNombre.getText().equals("") && txtApellido.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Error: asegurese de ingresar la informacion a modificar del estudiante");
             } else {
                 //en la siguiente linea se envia el parametro para editar el registro del arrayList y a la ves recive la posicion del elemento que se va a editar de la lista de gui
-                int editado = controlE.editar(txtNombre.getText(), txtApellido.getText(), txtGrado.getText(), txtCarnet.getText());
+                int editado = controlE.editar(txtNombre.getText(), txtApellido.getText(), cmbGrado.getSelectedItem().toString(), txtCarnet.getText());
                 // se modifica solo si existe el elemento en la posicion obtenida
                 if (editado < modeloLista.size()) {
                     ordenarLista();
                     modeloLista.set(editado, controlE.informacion(editado));
-                    txtGrado.setText("");
                     txtApellido.setText("");
                     txtNombre.setText("");
                 }
@@ -273,11 +269,10 @@ public class Ventana extends javax.swing.JFrame {
 
     private void rbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarActionPerformed
         txtApellido.setText("");
-        txtNombre.setText("");
-        txtGrado.setText("");
+        txtNombre.setText(""); 
         txtApellido.setEditable(false);
         txtNombre.setEditable(false);
-        txtGrado.setEditable(false);
+        cmbGrado.setEnabled(false);
         txtCarnet.setEditable(true);
         txtCarnet.requestFocus();
     }//GEN-LAST:event_rbtnEliminarActionPerformed
@@ -285,10 +280,9 @@ public class Ventana extends javax.swing.JFrame {
     private void rbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBuscarActionPerformed
         txtApellido.setText("");
         txtNombre.setText("");
-        txtGrado.setText("");
         txtApellido.setEditable(false);
         txtNombre.setEditable(false);
-        txtGrado.setEditable(false);
+        cmbGrado.setEnabled(false);
         txtCarnet.setEditable(true);
         txtCarnet.requestFocus();
     }//GEN-LAST:event_rbtnBuscarActionPerformed
@@ -296,11 +290,10 @@ public class Ventana extends javax.swing.JFrame {
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
         txtApellido.setText("");
         txtNombre.setText("");
-        txtGrado.setText("");
         txtCarnet.setText("");
         txtApellido.setEditable(true);
         txtNombre.setEditable(true);
-        txtGrado.setEditable(true);
+        cmbGrado.setEnabled(true);
         txtCarnet.setEditable(true);
         txtNombre.requestFocus();
     }//GEN-LAST:event_rbtnEditarActionPerformed
@@ -312,12 +305,6 @@ public class Ventana extends javax.swing.JFrame {
             evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
         }
     }//GEN-LAST:event_txtCarnetKeyTyped
-
-    private void txtGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyTyped
-        if (!(Character.isLetter(evt.getKeyChar()))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtGradoKeyTyped
 
     //metodo que manda a ordenar el Arraylist, luego le asigna a la lista de GUI los elementos ya ordenados
     public void ordenarLista(){
@@ -372,6 +359,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.ButtonGroup bGroup;
     private javax.swing.JButton btnAccion;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JComboBox<String> cmbGrado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -386,7 +374,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnEliminar;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarnet;
-    private javax.swing.JTextField txtGrado;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
