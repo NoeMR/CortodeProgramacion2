@@ -198,6 +198,9 @@ public class Ventana extends javax.swing.JFrame {
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
         txtCarnet.setText("");
+        txtApellido.setEditable(true);
+        txtNombre.setEditable(true);
+        cmbGrado.setEnabled(true);
         txtCarnet.setEditable(false);
         txtNombre.requestFocus();
     }//GEN-LAST:event_rbtnAgregarActionPerformed
