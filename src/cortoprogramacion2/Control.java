@@ -21,6 +21,7 @@ public class Control {
     }
 
     public void agregar(String nombre, String apellido, String grado) {
+        ordenarArray();
         // se le añade al arraylist un nuevo objeto del tipo estudiante pasando los parametros requeridos
         estudiantes.add(new Estudiante(nombre, apellido, verificarNumero(nombre, apellido), grado));
     }
@@ -38,6 +39,7 @@ public class Control {
 
     // metodo que realiza el proceso de editar el registro en el arrayList y retorna su posicion que servira para editar el elemnto en la lista del formulario
     public int editar(String nombre, String apellido, String grado, String carnet) {
+        ordenarArray();
         boolean editado = false;
         int indice;
         for (indice = 0; indice < estudiantes.size(); indice++) {
@@ -96,8 +98,8 @@ public class Control {
     public int verificarNumero(String nombre, String apellido) {
         int numero = 1;
         for (int i = 0; i < estudiantes.size(); i++) {
-            if ((String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0))).equals(String.valueOf(estudiantes.get(i).getCarnet().charAt(0)) + String.valueOf(estudiantes.get(i).getCarnet().charAt(1)))) {
-                numero++;
+            if ((String.valueOf(apellido.charAt(0)) + String.valueOf(nombre.charAt(0))).equalsIgnoreCase(String.valueOf(estudiantes.get(i).getCarnet().charAt(0)) + String.valueOf(estudiantes.get(i).getCarnet().charAt(1)))) {
+                numero = Integer.parseInt(String.valueOf(estudiantes.get(i).getCarnet().charAt(2)) + String.valueOf(estudiantes.get(i).getCarnet().charAt(3)) + String.valueOf(estudiantes.get(i).getCarnet().charAt(4))) + 1;
             }
         }
         return numero;
